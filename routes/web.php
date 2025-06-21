@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BorrowingController;
 
 // Rute untuk landing page publik
 Route::get('/', function () {
@@ -10,9 +11,10 @@ Route::get('/', function () {
 });
 
 // Rute dashboard yang hanya bisa diakses setelah login
-Route.get('/dashboard', function () {
+Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+Route::resource('borrowings', BorrowingController::class);
 
 // Rute untuk manajemen profil pengguna
 Route::middleware('auth')->group(function () {
@@ -23,3 +25,5 @@ Route::middleware('auth')->group(function () {
 
 // Ini akan menyertakan semua rute autentikasi dari Laravel Breeze (login, register, dll.)
 require __DIR__.'/auth.php';
+
+bayu
